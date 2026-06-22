@@ -62,10 +62,10 @@
       justify-content: center;
       gap: 10px;
       width: 100%;
-      padding: 0.9rem 1rem;
+      padding: 1rem;
       border-radius: 12px;
-      font-size: 15px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
       border: none;
       transition: opacity 0.15s, transform 0.1s;
@@ -73,14 +73,6 @@
     }
 
     .btn:active { transform: scale(0.97); opacity: 0.85; }
-
-    .btn-copy {
-      background: #f0f0f0;
-      color: #1a1a1a;
-      margin-bottom: 0.75rem;
-    }
-
-    .btn-copy:hover { background: #e4e4e4; }
 
     .btn-mbway {
       background: #2E7D32;
@@ -126,46 +118,48 @@
     <p class="title">Número MBWay</p>
     <p class="phone">927 437 849</p>
 
-    <button class="btn btn-copy" onclick="copyNumber()">
-      <i class="ti ti-copy" style="font-size:18px" aria-hidden="true"></i>
-      Copiar número
+    <!-- Único botão que faz as duas ações -->
+    <button class="btn btn-mbway" onclick="copiarEAbrirMBWay()">
+      <i class="ti ti-wallet" style="font-size:20px" aria-hidden="true"></i>
+      Copiar e Abrir MB WAY
     </button>
 
-    <button class="btn btn-mbway" onclick="openMBWay()">
-      <i class="ti ti-external-link" style="font-size:18px" aria-hidden="true"></i>
-      Abrir MBWay
-    </button>
-
-    <p class="toast" id="toast">✓ Número copiado!</p>
+    <p class="toast" id="toast">✓ Copiado! A abrir MB WAY...</p>
 
     <div class="divider"></div>
     <p class="hint">
-      <strong>1.</strong> Copia o número &nbsp;·&nbsp;
-      <strong>2.</strong> Abre o MBWay &nbsp;·&nbsp;
-      <strong>3.</strong> Pagamento → cola o número
+      <strong>1.</strong> Clica no botão &nbsp;·&nbsp;
+      <strong>2.</strong> No MB WAY → cola o número
     </p>
   </div>
 
   <script>
+    // O número exato que vai ser copiado para a memória (sem espaços)
     const PHONE = '927437849';
 
-    function copyNumber() {
+    function copiarEAbrirMBWay() {
+      // 1. Copia o número para a área de transferência
       navigator.clipboard.writeText(PHONE).then(() => {
-        showToast('✓ Número copiado!');
-      }).catch(() => {
-        showToast('Seleciona o número manualmente');
-      });
-    }
+        
+        // 2. Mostra a mensagem de sucesso
+        showToast('✓ Copiado! A abrir MB WAY...');
+        
+        // 3. Atraso estratégico (400ms) antes de forçar a abertura
+        setTimeout(() => {
+          window.location.href = 'mbway://';
+        }, 400);
 
-    function openMBWay() {
-      window.location.href = 'mbway://';
+      }).catch(() => {
+        // Fallback de segurança se o telemóvel bloquear a cópia
+        showToast('Erro ao copiar. Seleciona o número manualmente.');
+      });
     }
 
     function showToast(msg) {
       const t = document.getElementById('toast');
       t.textContent = msg;
       t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2500);
+      setTimeout(() => t.classList.remove('show'), 3000);
     }
   </script>
 </body>

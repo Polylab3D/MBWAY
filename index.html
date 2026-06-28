@@ -138,22 +138,36 @@
     const PHONE = '927437849';
 
     function copiarEAbrirMBWay() {
-      // 1. Copia o número para a área de transferência
-      navigator.clipboard.writeText(PHONE).then(() => {
-        
-        // 2. Mostra a mensagem de sucesso
-        showToast('✓ Copiado! A abrir MB WAY...');
-        
-        // 3. Atraso estratégico (400ms) antes de forçar a abertura
-        setTimeout(() => {
-          window.location.href = 'mbway://';
-        }, 400);
+    const PHONE = CONFIG.mbway.phoneValue;
 
-      }).catch(() => {
-        // Fallback de segurança se o telemóvel bloquear a cópia
-        showToast('Erro ao copiar. Seleciona o número manualmente.');
-      });
+  // Copia número
+    navigator.clipboard.writeText(PHONE).catch(() => {
+    const el = document.createElement('textarea');
+    el.value = PHONE;
+    el.style.cssText = 'position:fixed;opacity:0;';
+    document.body.appendChild(el);
+    el.focus(); el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  });
+
+  showToast(CONFIG.text.successMessage);
+
+  // Detecta sistema operativo
+    const isAndroid = /android/i.test(navigator.userAgent);
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+  setTimeout(() => {
+    if (isAndroid) {
+      // Intent URL específico para Android
+      window.location.href = 'intent://payment#Intent;scheme=mbway;package=pt.sibs.android.mbway;end';
+    } else if (isIOS) {
+      window.location.href = 'mbway://';
+    } else {
+      window.location.href = 'https://www.mbway.pt';
     }
+  }, 400);
+}
 
     function showToast(msg) {
       const t = document.getElementById('toast');

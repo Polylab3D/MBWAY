@@ -6,27 +6,27 @@
 const CONFIG = {
   // Informações do Negócio
   business: {
-    name: 'Jacqueline Sillis',           // Ex: "Nails Designer"
-    logoFile: 'logo.svg',               // Nome do arquivo do logo (deve estar na mesma pasta)
+    name: 'Wellen Barbosa',           // Ex: "Nails Designer"
+    logoFile: 'wb.png',               // Nome do arquivo do logo (deve estar na mesma pasta)
   },
 
   // Número MBWay
   mbway: {
-    phoneDisplay: '+351 967 872 889',        // Formato visual (com espaços)
-    phoneValue: '967872889',            // Número real (sem espaços, será copiado)
+    phoneDisplay: '+351 927 437 849',        // Formato visual (com espaços)
+    phoneValue: '927437849',            // Número real (sem espaços, será copiado)
   },
 
   // Cores e Estilo
   theme: {
     // Cor principal (botão MBWay)
-    primaryColor: '#2E7D32',            // Verde MBWay padrão
-    primaryColorHover: '#256427',       // Verde mais escuro ao passar mouse
+    primaryColor: '#FBD6A3',            // dourado claro
+    primaryColorHover: '##C78C3F',       // dourado escuro
 
     // Fundo da página
-    backgroundColor: '#f5f5f5',         // Cinza claro
+    backgroundColor: '#FDECEE',         // rosa claro
 
     // Card
-    cardBackground: '#ffffff',          // Branco
+    cardBackground: '#F2CED1',          // Branco
     cardShadow: '0 4px 24px rgba(0,0,0,0.08)',
   },
 

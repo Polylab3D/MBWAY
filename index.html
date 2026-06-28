@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pagamento MBWay</title>
+  <title id="page-title">Pagamento MBWay</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
-  <style>
+  <style id="dynamic-styles">
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f5f5f5;
+      background: var(--bg-color);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -19,13 +19,13 @@
     }
 
     .card {
-      background: #ffffff;
+      background: var(--card-bg);
       border-radius: 20px;
       padding: 2.25rem 1.75rem 2rem;
       max-width: 360px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      box-shadow: var(--card-shadow);
     }
 
     .logo-wrap {
@@ -75,15 +75,15 @@
     .btn:active { transform: scale(0.97); opacity: 0.85; }
 
     .btn-mbway {
-      background: #2E7D32;
+      background: var(--primary-color);
       color: #ffffff;
     }
 
-    .btn-mbway:hover { background: #256427; }
+    .btn-mbway:hover { background: var(--primary-hover); }
 
     .toast {
       font-size: 13px;
-      color: #2E7D32;
+      color: var(--primary-color);
       font-weight: 500;
       margin-top: 0.85rem;
       min-height: 18px;
@@ -112,30 +112,50 @@
 <body>
   <div class="card">
     <div class="logo-wrap">
-      <img src="wb.png" alt="Wellen Barbosa Nails Designer" />
+      <img id="logo" src="" alt="" />
     </div>
 
-    <p class="title">Número MBWay</p>
-    <p class="phone">927 437 849</p>
+    <p class="title" id="label">Número MBWay</p>
+    <p class="phone" id="phone-display">000 000 000</p>
 
-    <!-- Único botão que faz as duas ações -->
-    <button class="btn btn-mbway" onclick="copiarEAbrirMBWay()">
+    <button class="btn btn-mbway" id="main-btn" onclick="copiarEAbrirMBWay()">
       <i class="ti ti-wallet" style="font-size:20px" aria-hidden="true"></i>
-      Copiar e Abrir MB WAY
+      <span id="btn-text">Copiar e Abrir MB WAY</span>
     </button>
 
-    <p class="toast" id="toast">✓ Copiado! A abrir MB WAY...</p>
+    <p class="toast" id="toast"></p>
 
     <div class="divider"></div>
     <p class="hint">
-      <strong>1.</strong> Clica no botão &nbsp;·&nbsp;
-      <strong>2.</strong> No MB WAY → cola o número
+      <strong>1.</strong> <span id="step1">Clica no botão</span> &nbsp;·&nbsp;
+      <strong>2.</strong> <span id="step2">No MB WAY → cola o número</span>
     </p>
   </div>
 
+  <script src="config.js"></script>
   <script>
-    // O número exato que vai ser copiado para a memória (sem espaços)
-    const PHONE = '927437849';
+    // Aplica configurações ao carregar a página
+    document.addEventListener('DOMContentLoaded', () => {
+      // CSS Variables
+      document.documentElement.style.setProperty('--bg-color', CONFIG.theme.backgroundColor);
+      document.documentElement.style.setProperty('--card-bg', CONFIG.theme.cardBackground);
+      document.documentElement.style.setProperty('--card-shadow', CONFIG.theme.cardShadow);
+      document.documentElement.style.setProperty('--primary-color', CONFIG.theme.primaryColor);
+      document.documentElement.style.setProperty('--primary-hover', CONFIG.theme.primaryColorHover);
+
+      // Textos
+      document.getElementById('page-title').textContent = CONFIG.text.pageTitle;
+      document.getElementById('label').textContent = CONFIG.text.label;
+      document.getElementById('phone-display').textContent = CONFIG.mbway.phoneDisplay;
+      document.getElementById('btn-text').textContent = CONFIG.text.buttonText;
+      document.getElementById('step1').textContent = CONFIG.text.step1;
+      document.getElementById('step2').textContent = CONFIG.text.step2;
+
+      // Logo
+      const logo = document.getElementById('logo');
+      logo.src = CONFIG.business.logoFile;
+      logo.alt = CONFIG.business.name;
+    });
 
     function copiarEAbrirMBWay() {
     const PHONE = CONFIG.mbway.phoneValue;
@@ -168,6 +188,7 @@
     }
   }, 400);
 }
+
 
     function showToast(msg) {
       const t = document.getElementById('toast');

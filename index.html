@@ -180,9 +180,22 @@
     const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
   setTimeout(() => {
-    if (isAndroid) {
-      // Intent URL específico para Android
-      window.location.href = 'intent://payment#Intent;scheme=mbway;package=pt.sibs.android.mbway;end';
+   if (isAndroid) {
+  showToast('Número copiado! Toca em “Abrir” na página seguinte.');
+
+  const fallback = encodeURIComponent(
+    'https://play.google.com/store/apps/details?id=pt.sibs.android.mbway'
+  );
+
+  window.location.href =
+    'intent://details?id=pt.sibs.android.mbway' +
+    '#Intent;' +
+    'scheme=market;' +
+    'package=com.android.vending;' +
+    `S.browser_fallback_url=${fallback};` +
+    'end';
+
+  return;
     } else if (isIOS) {
       window.location.href = 'mbway://';
     } else {

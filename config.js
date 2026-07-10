@@ -42,4 +42,8 @@ const CONFIG = {
     step1: 'Clica no botão',
     step2: 'No MB WAY → cola o número',
   },
+
+    footer: {
+    text: '© 2026 PolyLAB 3D - Todos os direitos reservados'
+  }
 };

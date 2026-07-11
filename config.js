@@ -1,49 +1,79 @@
 // ==========================================
-// CONFIGURAÇÃO DO SITE MBWAY - WHITE LABEL
+// CONFIGURAÇÃO DO SITE MB WAY - WELLEN BARBOSA
+// Repositório: wellen-barbosa
 // ==========================================
-// Edite apenas este arquivo para personalizar o site para cada cliente
+// Esta página utiliza a index base da PolyLAB 3D.
 
 const CONFIG = {
-  // Informações do Negócio
+  // Informações do negócio
   business: {
-    name: 'Wellen Barbosa',           // Ex: "Nails Designer"
-    logoFile: 'wb.png',               // Nome do arquivo do logo (deve estar na mesma pasta)
+    name: 'Wellen Barbosa',
+    logoFile: 'wb.png',
   },
 
-  // Número MBWay
+  // Número MB WAY
   mbway: {
-    phoneDisplay: '+351 927 437 849',        // Formato visual (com espaços)
-    phoneValue: '927437849',            // Número real (sem espaços, será copiado)
+    phoneDisplay: '+351 927 437 849',
+    phoneValue: '927437849',
   },
 
-  // Cores e Estilo
+  // Tema visual inspirado na identidade rosa, dourada e vinho da cliente
   theme: {
-    // Cor principal (botão MBWay)
-    primaryColor: '#FBD6A3',            // dourado claro
-    primaryColorHover: '##C78C3F',       // dourado escuro
+    // Fundo geral da página
+    'background-color':
+      'linear-gradient(180deg, #FFF1F4 0%, #F6DCE2 100%)',
 
-    // Fundo da página
-    backgroundColor: '#FDECEE',         // rosa claro
+    // Card principal
+    'card-background': '#FFF9FA',
 
-    // Card
-    cardBackground: '#F2CED1',          // Branco
-    cardShadow: '0 4px 24px rgba(0,0,0,0.08)',
+    // Sombra do card
+    'card-shadow': '0 12px 36px rgba(126, 47, 73, 0.14)',
+
+    // Cor principal do número MB WAY
+    'text-color': '#4A252F',
+
+    // Cor do texto "Número MB WAY"
+    'text-secondary': '#A23A5A',
+
+    // Cor das instruções e do rodapé
+    'text-muted': 'rgba(106, 66, 77, 0.68)',
+
+    // Cor da linha divisória
+    'divider-color': 'rgba(199, 140, 63, 0.22)',
+
+    // Cor principal dos botões
+    'link-bg': '#C78C3F',
+
+    // Cor dos botões ao clicar ou passar o rato
+    'link-hover-bg': '#A96F2C',
+
+    // Cor do texto e dos ícones dos botões
+    'link-text': '#FFFFFF',
   },
 
-  // Textos Customizáveis
+  // Textos da página
   text: {
-    pageTitle: 'Pagamento MBWay',       // Título da aba do navegador
-    label: 'Número MBWay',              // Texto acima do número
-    buttonText: 'Copiar e Abrir MB WAY', // Texto do botão
-    successMessage: '✓ Copiado! A abrir MB WAY...', // Mensagem de sucesso
-    errorMessage: 'Erro ao copiar. Seleciona o número manualmente.', // Mensagem de erro
+    pageTitle: 'Pagamento MB WAY',
 
-    // Instruções
-    step1: 'Clica no botão',
-    step2: 'No MB WAY → cola o número',
+    label: 'Número MB WAY',
+
+    buttonText: 'Copiar número',
+
+    openButtonText: 'Abrir MB WAY agora',
+
+    successMessage:
+      '✓ Número copiado! Agora toque em "Abrir MB WAY agora".',
+
+    errorMessage:
+      'Erro ao copiar. Seleciona o número manualmente.',
+
+    step1: 'Clica no botão para copiar o número',
+
+    step2: 'No MB WAY, cola o número',
   },
 
-    footer: {
-    text: '© 2026 PolyLAB 3D - Todos os direitos reservados'
-  }
+  // Rodapé
+  footer: {
+    text: '© 2026 PolyLAB 3D - Todos os direitos reservados',
+  },
 };
